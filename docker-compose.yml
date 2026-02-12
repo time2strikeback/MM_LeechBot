@@ -1,0 +1,12 @@
+services:
+  mm_leechbot:
+    build: .
+    container_name: mm_leechbot
+    restart: on-failure:3
+    environment:
+      - TZ=Asia/Kolkata
+    volumes:
+      - .:/app
+      - ./downloads:/app/downloads
+    ports:
+      - "8000:8000"

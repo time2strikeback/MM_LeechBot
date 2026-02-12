@@ -52,7 +52,9 @@ class TorrentManager:
                 LOGGER.info("Torrents are disabled.")
                 return
 
-            cls.qbittorrent = await create_client("http://localhost:8090/api/v2/")
+            cls.qbittorrent = await create_client(
+                "http://localhost:8090/api/v2/",
+            )
             cls.qbittorrent = wrap_with_retry(cls.qbittorrent)
 
         except Exception as e:

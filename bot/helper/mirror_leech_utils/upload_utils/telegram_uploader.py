@@ -230,7 +230,14 @@ class TelegramUploader:
                 cap_mono,
             )
 
-        if len(file_) > 255:
+        # Telegram filename limit is ~64 chars; truncate to 60 to be safe
+        TG_FILENAME_LIMIT = 60
+
+        if self._lsuffix:
+            name, ext = ospath.splitext(file_)
+            file_ = f"{name}{self._lsuffix}{ext}"
+
+        if len(file_) > TG_FILENAME_LIMIT:
             if is_archive(file_):
                 name = get_base_name(file_)
                 ext = file_.split(name, 1)[1]
@@ -243,13 +250,8 @@ class TelegramUploader:
             else:
                 name = file_
                 ext = ""
-            if self._lsuffix:
-                ext = f"{self._lsuffix}{ext}"
-            name = name[: 255 - len(ext)]
+            name = name[: TG_FILENAME_LIMIT - len(ext)]
             file_ = f"{name}{ext}"
-        elif self._lsuffix:
-            name, ext = ospath.splitext(file_)
-            file_ = f"{name}{self._lsuffix}{ext}"
 
         if pre_file_ != file_:
             new_path = ospath.join(dirpath, file_)

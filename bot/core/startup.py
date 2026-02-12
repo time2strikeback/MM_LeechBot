@@ -332,11 +332,19 @@ async def load_configurations():
         else:
             LOGGER.warning(f"{BinConfig.ARIA2_NAME} not found. Direct downloads will not work.")
     else:
-        await (
-            await create_subprocess_shell(
-                f"chmod 600 .netrc && cp .netrc /root/.netrc && chmod +x setpkgs.sh && ./setpkgs.sh {BinConfig.ARIA2_NAME} {BinConfig.SABNZBD_NAME}"
-            )
-        ).wait()
+        # In Docker, entrypoint.sh starts aria2c. On bare metal, use setpkgs.sh
+        if not ospath.exists("/.dockerenv"):
+            await (
+                await create_subprocess_shell(
+                    f"chmod 600 .netrc && cp .netrc /root/.netrc && chmod +x setpkgs.sh && ./setpkgs.sh {BinConfig.ARIA2_NAME} {BinConfig.SABNZBD_NAME}"
+                )
+            ).wait()
+        else:
+            await (
+                await create_subprocess_shell(
+                    "chmod 600 .netrc && cp .netrc /root/.netrc"
+                )
+            ).wait()
 
     PORT = getenv("PORT", "") or Config.BASE_URL_PORT
     if PORT:

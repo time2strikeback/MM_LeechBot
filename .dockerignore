@@ -1,0 +1,11 @@
+downloads/
+__pycache__/
+**/__pycache__/
+*.pyc
+.git/
+.gitignore
+*.log
+log.txt
+*.session
+*.session-journal
+.floodwait

@@ -101,10 +101,12 @@ sabnzbd_client = SabnzbdClient(
     port="8070",
 )
 
+# On Docker, qBittorrent is started by entrypoint.sh
+# On Windows/bare metal, start it here if available
 import shutil as _shutil
-if _shutil.which(BinConfig.QBIT_NAME):
+if sys.platform == "win32" and _shutil.which(BinConfig.QBIT_NAME):
     srun([BinConfig.QBIT_NAME, "-d", f"--profile={getcwd()}"], check=False)
-else:
-    LOGGER.warning(f"{BinConfig.QBIT_NAME} not found in PATH. Torrents will not work.")
+elif sys.platform != "win32" and not ospath.exists("/.dockerenv") and _shutil.which(BinConfig.QBIT_NAME):
+    srun([BinConfig.QBIT_NAME, "-d", f"--profile={getcwd()}"], check=False)
 
 scheduler = AsyncIOScheduler(event_loop=bot_loop)

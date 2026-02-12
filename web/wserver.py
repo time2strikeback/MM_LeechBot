@@ -49,7 +49,9 @@ async def lifespan(app: FastAPI):
     except Exception:
         aria2 = None
     try:
-        qbittorrent = await create_client("http://localhost:8090/api/v2/")
+        qbittorrent = await create_client(
+            "http://localhost:8090/api/v2/",
+        )
     except Exception:
         qbittorrent = None
     yield

@@ -16,3 +16,23 @@ list_drives.txt
 shortener.txt
 cookies.txt
 downloads/*
+
+# Python cache
+__pycache__/
+**/__pycache__/
+*.pyc
+*.pyo
+
+# Docker runtime
+.floodwait
+*.session
+*.session-journal
+
+# qBittorrent runtime
+qBittorrent/config/ipc-socket
+qBittorrent/config/lockfile
+qBittorrent/config/qBittorrent-data.conf
+qBittorrent/config/categories.json
+qBittorrent/config/watched_folders.json
+qBittorrent/config/rss/
+qBittorrent/data/
