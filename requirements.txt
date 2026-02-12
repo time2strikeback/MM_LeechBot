@@ -1,0 +1,45 @@
+asyncio
+aiofiles
+aiohttp
+aioshutil
+anytree
+apscheduler
+aioaria2
+aioqbt
+imdbinfo
+cloudscraper
+dnspython
+fastapi
+feedparser
+google-api-python-client
+google-auth-httplib2
+google-auth-oauthlib
+gunicorn; sys_platform != 'win32'
+httpx
+langcodes
+language-data
+jinja2
+lxml
+motor
+natsort
+par2cmdline-turbo
+pillow
+psutil
+pycountry
+pymongo
+pyrotgfork
+python-magic; sys_platform != 'win32'
+python-magic-bin; sys_platform == 'win32'
+pytz
+qbittorrent-api
+requests
+speedtest-cli
+telegraph
+tenacity
+tgcrypto; sys_platform != 'win32'
+tgcrypto-pyrofork; sys_platform == 'win32'
+urllib3
+uvicorn
+uvloop==0.21.0; sys_platform != 'win32'
+xattr; sys_platform != 'win32'
+yt-dlp[default,curl-cffi]
