@@ -27,7 +27,7 @@ pillow
 psutil
 pycountry
 pymongo
-pyrotgfork
+pyrofork
 python-magic; sys_platform != 'win32'
 python-magic-bin; sys_platform == 'win32'
 pytz
@@ -36,8 +36,7 @@ requests
 speedtest-cli
 telegraph
 tenacity
-tgcrypto; sys_platform != 'win32'
-tgcrypto-pyrofork; sys_platform == 'win32'
+tgcrypto-pyrofork
 urllib3
 uvicorn
 uvloop==0.21.0; sys_platform != 'win32'
